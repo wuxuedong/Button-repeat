@@ -18,9 +18,14 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PreventRepeatSubmit(interval=30)
+    @PreventRepeatSubmit(interval=10)
     @RequestMapping("/insert")
     public ResponseResult insertStudent(@RequestBody Student student) {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         studentService.insert(student);
         return ResponseResult.okResult();
     }
